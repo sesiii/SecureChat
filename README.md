@@ -21,6 +21,20 @@ In the original code, `asyncio` handled multiple connections on a single thread 
 * **Dirty Exit:** Catching `ConnectionResetError` if the client process is killed abruptly.
 * In both cases, the `finally` block ensures the client is removed from the shared state and the socket is closed.
 
+## Problem 4: Chat Rooms
+
+### 1. Room Isolation
+* [cite_start]**Logic:** Instead of a global broadcast, the server now maps every socket to a `room_name` in the `client_rooms` dictionary.
+* [cite_start]**Default State:** New users are automatically placed in the `lobby` upon successful login.
+* [cite_start]**Filtering:** The `broadcast_to_room` function iterates through connected clients and only sends the data if `client_room == target_room`.
+
+### [cite_start]2. Supported Commands 
+* `/join <room>`: Switches the user's current room state and notifies both the old and new rooms.
+* `/leave`: Returns the user to the default `lobby`.
+* `/rooms`: Lists all currently active rooms that have at least one occupant.
+
+### 3. Thread Safety
+* [cite_start]Updates to `client_rooms` are performed within the `clients_lock` to ensure that a broadcast doesn't occur while a user is mid-transition between rooms[cite: 17, 34].
 ## How to Run
 1. **Start the Server:**
    ```bash
