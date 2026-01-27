@@ -1,0 +1,9 @@
+2026-01-28 00:19:28,198 [INFO] Server listening on 127.0.0.1:60008
+2026-01-28 00:19:41,456 [INFO] User 'dave' authenticated from ('127.0.0.1', 61139)
+2026-01-28 00:20:09,847 [INFO] User 'bob' authenticated from ('127.0.0.1', 61143)
+2026-01-28 00:20:14,713 [INFO] Broadcast: dave: hi
+2026-01-28 00:20:17,877 [INFO] Broadcast: bob: nike
+2026-01-28 00:20:52,972 [WARNING] Duplicate login attempt rejected for: dave from ('127.0.0.1', 61151)
+2026-01-28 00:21:47,909 [INFO] User 'dave' session ended.
+2026-01-28 00:21:50,458 [INFO] User 'bob' session ended.
+2026-01-28 00:21:52,856 [ERROR] Auth error for ('127.0.0.1', 61151): [WinError 10054] An existing connection was forcibly closed by the remote host
