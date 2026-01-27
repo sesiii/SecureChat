@@ -7,3 +7,13 @@
 2026-01-28 00:21:47,909 [INFO] User 'dave' session ended.
 2026-01-28 00:21:50,458 [INFO] User 'bob' session ended.
 2026-01-28 00:21:52,856 [ERROR] Auth error for ('127.0.0.1', 61151): [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-01-28 00:24:06,585 [INFO] Room-based server listening on 60008
+2026-01-28 00:25:18,604 [INFO] [a] [a] dave: hi
+2026-01-28 00:25:22,200 [INFO] [a] [a] dave: apple
+2026-01-28 00:25:25,226 [INFO] [a] [a] bob: nike
+2026-01-28 00:26:00,773 [INFO] [b] [b] alice: j
+2026-01-28 00:26:01,855 [INFO] [b] [b] alice: j
+2026-01-28 00:26:02,639 [INFO] [b] [b] alice: j
+2026-01-28 00:26:04,663 [INFO] [b] [b] alice: jns
+2026-01-28 00:26:58,384 [INFO] [lobby] [lobby] alice: hi
+2026-01-28 00:27:03,930 [INFO] [lobby] [lobby] dave: nike

@@ -8,18 +8,15 @@ import sys
 HOST = '127.0.0.1'
 PORT = 60008
 
-# Setup Logging to both Terminal and File
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s [%(levelname)s] %(message)s',
-    handlers=[
-        logging.FileHandler("chat_server.log"),
-        logging.StreamHandler(sys.stdout)
-    ]
+    handlers=[logging.FileHandler("chat_server.log"), logging.StreamHandler(sys.stdout)]
 )
 
 # Shared state
-clients = {} # {socket: username}
+clients = {}    # {socket: username}
+client_rooms = {} # {socket: room_name} 
 user_db = {
     "alice": bcrypt.hashpw("password123".encode(), bcrypt.gensalt()),
     "bob": bcrypt.hashpw("letmein".encode(), bcrypt.gensalt()),
@@ -28,116 +25,129 @@ user_db = {
 }
 clients_lock = threading.Lock()
 
-def broadcast(message, sender_socket=None):
-    """
-    Sends a message to all authenticated clients except the sender.
-    Logs the message to the server console and file.
-    """
-    logging.info(f"Broadcast: {message}")
+def broadcast_to_room(message, room, sender_socket=None):
+    """Broadcasts messages only to members of a specific room."""
+    logging.info(f"[{room}] {message}")
     encoded_msg = message.encode('utf-8')
     
     with clients_lock:
-        for client_socket in list(clients.keys()):
-            # Logic: Only send if it's NOT the sender_socket
-            if client_socket != sender_socket:
+        for client_socket, client_room in client_rooms.items():
+            if client_room == room and client_socket != sender_socket:
                 try:
                     client_socket.sendall(encoded_msg)
-                except Exception as e:
-                    logging.error(f"Failed to send to a client: {e}")
+                except:
                     remove_client(client_socket)
 
 def remove_client(client_socket):
-    """Cleanup client session and handle disconnects gracefully[cite: 11, 15]."""
+    """Handles client cleanup and room exit[cite: 11, 27]."""
     with clients_lock:
         user = clients.pop(client_socket, None)
+        room = client_rooms.pop(client_socket, None)
         try:
             client_socket.close()
         except:
             pass
-        return user
+        return user, room
+
+def handle_commands(client_socket, username, msg):
+    """Processes room-related commands."""
+    parts = msg.split()
+    cmd = parts[0].lower()
+
+    if cmd == "/rooms":
+        with clients_lock:
+            unique_rooms = set(client_rooms.values())
+        client_socket.sendall(f"Available rooms: {', '.join(unique_rooms)}".encode())
+        return True
+
+    elif cmd == "/join" and len(parts) > 1:
+        new_room = parts[1]
+        old_room = client_rooms[client_socket]
+        
+        broadcast_to_room(f"🔴 {username} left the room.", old_room, sender_socket=client_socket)
+        
+        with clients_lock:
+            client_rooms[client_socket] = new_room
+            
+        client_socket.sendall(f"SUCCESS: Joined room {new_room}".encode())
+        broadcast_to_room(f"🟢 {username} joined the room.", new_room, sender_socket=client_socket)
+        return True
+
+    elif cmd == "/leave":
+        old_room = client_rooms[client_socket]
+        broadcast_to_room(f"🔴 {username} left the room.", old_room, sender_socket=client_socket)
+        
+        with clients_lock:
+            client_rooms[client_socket] = "lobby"
+            
+        client_socket.sendall("Returned to lobby.".encode())
+        broadcast_to_room(f"🟢 {username} joined the room.", "lobby", sender_socket=client_socket)
+        return True
+        
+    return False
 
 def handle_authentication(client_socket, addr):
-    """Handles the LOGIN <username> <password> requirement[cite: 14]."""
+    """Standard authentication with default lobby assignment[cite: 14, 27]."""
     while True:
         try:
-            client_socket.sendall("AUTH_REQUIRED: Please LOGIN <username> <password>".encode())
+            client_socket.sendall("AUTH_REQUIRED: LOGIN <user> <pass>".encode())
             data = client_socket.recv(1024).decode('utf-8').strip()
-            
-            if not data:
-                return None
+            if not data: return None
 
             parts = data.split()
             if len(parts) == 3 and parts[0].upper() == "LOGIN":
                 _, username, password = parts
-                
-                # Securely verify credentials [cite: 14]
                 if username in user_db and bcrypt.checkpw(password.encode(), user_db[username]):
                     with clients_lock:
-                        # Reject Duplicate Login Policy 
                         if username in clients.values():
-                            client_socket.sendall("ERROR: User already logged in.\n".encode())
-                            logging.warning(f"Duplicate login attempt rejected for: {username} from {addr}")
+                            client_socket.sendall("ERROR: Already logged in.\n".encode())
                             continue
-                        
                         clients[client_socket] = username
+                        client_rooms[client_socket] = "lobby" # Default lobby 
                     
-                    client_socket.sendall(f"SUCCESS: Welcome {username}\n".encode())
-                    logging.info(f"User '{username}' authenticated from {addr}")
+                    client_socket.sendall(f"SUCCESS: Welcome {username} to lobby\n".encode())
                     return username
-                else:
-                    client_socket.sendall("ERROR: Invalid credentials.\n".encode())
-                    logging.warning(f"Failed login attempt for '{username}' from {addr}")
-            else:
-                client_socket.sendall("ERROR: Use format LOGIN <username> <password>\n".encode())
-        except Exception as e:
-            logging.error(f"Auth error for {addr}: {e}")
+            client_socket.sendall("ERROR: Invalid credentials.\n".encode())
+        except:
             return None
 
 def handle_client(client_socket, addr):
-    """Manages the client thread using threading.Thread[cite: 9, 10]."""
     username = handle_authentication(client_socket, addr)
-    
     if not username:
         remove_client(client_socket)
         return
 
-    broadcast(f"🟢 {username} joined the chat.")
+    broadcast_to_room(f"🟢 {username} joined the lobby.", "lobby")
 
     try:
         while True:
-            # Blocking I/O read [cite: 9]
             msg = client_socket.recv(1024).decode('utf-8')
-            if not msg:
-                break
+            if not msg: break
             
-            # Broadcast to everyone ELSE
-            broadcast(f"{username}: {msg}", sender_socket=client_socket)
-    except Exception as e:
-        logging.debug(f"Connection error with {username}: {e}")
+            if msg.startswith("/"):
+                if handle_commands(client_socket, username, msg):
+                    continue
+            
+            # Send to specific room members only 
+            current_room = client_rooms[client_socket]
+            broadcast_to_room(f"[{current_room}] {username}: {msg}", current_room, sender_socket=client_socket)
+    except:
+        pass
     finally:
-        user = remove_client(client_socket)
+        user, room = remove_client(client_socket)
         if user:
-            broadcast(f"🔴 {user} left the chat.")
-            logging.info(f"User '{user}' session ended.")
+            broadcast_to_room(f"🔴 {user} left the chat.", room)
 
 def start_server():
-    """Initializes the TCP server using socket[cite: 10]."""
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server.bind((HOST, PORT))
     server.listen()
-    logging.info(f"Server listening on {HOST}:{PORT}")
+    logging.info(f"Room-based server listening on {PORT}")
 
-    try:
-        while True:
-            conn, addr = server.accept()
-            # One thread per connected client [cite: 10]
-            thread = threading.Thread(target=handle_client, args=(conn, addr), daemon=True)
-            thread.start()
-    except KeyboardInterrupt:
-        logging.info("Server shutting down.")
-    finally:
-        server.close()
+    while True:
+        conn, addr = server.accept()
+        threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
 
 if __name__ == "__main__":
     start_server()
