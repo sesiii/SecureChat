@@ -17,3 +17,39 @@
 2026-01-28 00:26:04,663 [INFO] [b] [b] alice: jns
 2026-01-28 00:26:58,384 [INFO] [lobby] [lobby] alice: hi
 2026-01-28 00:27:03,930 [INFO] [lobby] [lobby] dave: nike
+2026-02-09 09:54:44,515 [INFO] Pub-Sub Server listening on 60008
+2026-02-09 09:57:07,094 [INFO] PUB: bob -> join lobby
+2026-02-09 09:57:07,095 [INFO] ROOM [apple] bob: join lobby
+2026-02-09 09:57:16,483 [INFO] PUB: alice -> ok
+2026-02-09 09:57:16,484 [INFO] ROOM [apple] alice: ok
+2026-02-09 10:00:22,015 [INFO] PUB: dave -> hi
+2026-02-09 10:00:22,015 [INFO] ROOM [cat] dave: hi
+2026-02-09 10:01:28,434 [INFO] PUB: dave -> hi
+2026-02-09 10:01:28,434 [INFO] ROOM [cat] dave: hi
+2026-02-09 10:02:07,445 [INFO] PUB: bob -> /unnsubscribe dave
+2026-02-09 10:02:07,445 [INFO] ROOM [lobby] bob: /unnsubscribe dave
+2026-02-09 10:02:10,471 [INFO] PUB: dave -> hi
+2026-02-09 10:02:10,471 [INFO] ROOM [cat] dave: hi
+2026-02-09 10:02:23,534 [INFO] PUB: dave -> ji
+2026-02-09 10:02:23,534 [INFO] ROOM [cat] dave: ji
+2026-02-09 10:02:30,921 [INFO] User 'bob' session ended.
+2026-02-09 10:02:32,530 [INFO] User 'dave' session ended.
+2026-02-09 10:02:34,614 [INFO] PUB: alice -> hi
+2026-02-09 10:02:34,615 [INFO] ROOM [lobby] alice: hi
+2026-02-09 10:02:36,275 [INFO] PUB: alice -> lns
+2026-02-09 10:02:36,276 [INFO] ROOM [lobby] alice: lns
+2026-02-09 10:03:15,905 [INFO] PUB: bob -> hi
+2026-02-09 10:03:15,907 [INFO] ROOM [lobby] bob: hi
+2026-02-09 10:03:21,605 [INFO] PUB: bob -> ljnsx
+2026-02-09 10:03:21,605 [INFO] ROOM [apple] bob: ljnsx
+2026-02-09 10:03:22,360 [INFO] PUB: bob -> jlnsx
+2026-02-09 10:03:22,360 [INFO] ROOM [apple] bob: jlnsx
+2026-02-09 10:03:24,093 [INFO] PUB: alice -> jns
+2026-02-09 10:03:24,093 [INFO] ROOM [apple] alice: jns
+2026-02-09 10:03:55,258 [INFO] PUB: alice -> hi
+2026-02-09 10:03:55,259 [INFO] ROOM [apple] alice: hi
+2026-02-09 10:04:01,517 [INFO] PUB: bob -> ni
+2026-02-09 10:04:01,518 [INFO] ROOM [apple] bob: ni
+2026-02-09 10:04:11,394 [INFO] User 'bob' session ended.
+2026-02-09 10:04:12,986 [INFO] User 'dave' session ended.
+2026-02-09 10:04:14,392 [INFO] User 'alice' session ended.
