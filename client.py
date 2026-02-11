@@ -3,7 +3,7 @@ import threading
 import sys
 
 HOST = '127.0.0.1'
-PORT = 60008
+PORT = 2001
 
 def receive_messages(sock):
     """Thread function to constantly listen for messages from the server."""
@@ -26,7 +26,6 @@ def start_client():
         print("Could not connect to server.")
         return
 
-    # Start a thread to receive messages so input doesn't block them
     threading.Thread(target=receive_messages, args=(client,), daemon=True).start()
 
     try:

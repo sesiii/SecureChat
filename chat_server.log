@@ -53,3 +53,108 @@
 2026-02-09 10:04:11,394 [INFO] User 'bob' session ended.
 2026-02-09 10:04:12,986 [INFO] User 'dave' session ended.
 2026-02-09 10:04:14,392 [INFO] User 'alice' session ended.
+2026-02-09 10:17:13,011 [INFO] Redis-integrated server listening on 60008
+2026-02-11 15:50:30,551 [INFO] Redis-integrated server listening on 60008
+2026-02-11 15:54:30,746 [INFO] Redis-integrated server listening on 60008
+2026-02-11 10:29:51,012 [INFO] Redis-integrated server listening on 60008
+2026-02-11 10:33:53,195 [INFO] Redis-integrated server listening on 60008
+2026-02-11 10:34:34,594 [INFO] Redis-integrated server listening on 60009
+2026-02-11 10:37:58,328 [INFO] Server listening on 127.0.0.1:60008
+2026-02-11 10:37:58,333 [INFO] Redis listener thread started.
+2026-02-11 10:38:48,262 [INFO] User 'bob' authenticated from ('127.0.0.1', 40120)
+2026-02-11 10:40:32,882 [INFO] Redis listener thread started.
+2026-02-11 10:40:53,474 [INFO] Server listening on 127.0.0.1:60005
+2026-02-11 10:40:53,477 [INFO] Redis listener thread started.
+2026-02-11 10:46:46,246 [INFO] Shutting down server... Clearing Redis state.
+2026-02-11 10:46:46,257 [INFO] Redis database flushed successfully.
+2026-02-11 10:47:01,703 [INFO] Server listening on 127.0.0.1:60005
+2026-02-11 10:47:01,707 [INFO] Redis listener thread started.
+2026-02-11 10:47:51,387 [INFO] User 'alice' authenticated from ('127.0.0.1', 56354)
+2026-02-11 10:48:17,708 [INFO] User 'bob' authenticated from ('127.0.0.1', 50000)
+2026-02-11 10:48:30,796 [INFO] PUB [room1] Server: alice joined the room.
+2026-02-11 10:48:38,915 [INFO] PUB [room1] Server: bob joined the room.
+2026-02-11 10:48:42,780 [INFO] PUB [room1] alice: hi
+2026-02-11 10:48:53,718 [INFO] PUB [room1] bob: hi alice
+2026-02-11 10:48:57,365 [INFO] PUB [room1] alice: hi bob
+2026-02-11 10:49:03,793 [INFO] PUB [room1] alice: /leave room1
+2026-02-11 10:49:11,723 [INFO] PUB [room1] bob: hi
+2026-02-11 10:49:19,236 [INFO] PUB [lobby] Server: alice joined the room.
+2026-02-11 10:49:22,715 [INFO] PUB [room1] bob: b
+2026-02-11 10:49:26,259 [INFO] PUB [lobby] Server: bob joined the room.
+2026-02-11 10:55:12,048 [INFO] User 'dave' authenticated from ('127.0.0.1', 50538)
+2026-02-11 10:55:29,730 [INFO] PUB [room1] Server: dave joined the room.
+2026-02-11 10:55:35,228 [INFO] PUB [room1] Server: bob joined the room.
+2026-02-11 10:55:41,123 [INFO] PUB [room2] Server: alice joined the room.
+2026-02-11 10:55:43,264 [INFO] PUB [room1] dave: hi
+2026-02-11 10:55:46,594 [INFO] PUB [room1] bob: hihi
+2026-02-11 10:56:01,902 [INFO] PUB [room2] alice: /subscribe dave
+2026-02-11 10:56:03,899 [INFO] PUB [room1] dave: in
+2026-02-11 10:56:09,229 [INFO] PUB [room1] bob: nj
+2026-02-11 10:56:10,767 [INFO] PUB [room1] bob: jn
+2026-02-11 10:56:19,479 [INFO] PUB [room2] alice: /subscribe room1
+2026-02-11 10:56:21,263 [INFO] PUB [room1] dave: in
+2026-02-11 10:56:23,265 [INFO] PUB [room1] bob: n
+2026-02-11 10:58:09,425 [INFO] PUB [room2] alice: hu
+2026-02-11 10:58:35,866 [INFO] PUB [room2] alice: /subscribe dave
+2026-02-11 10:58:42,982 [INFO] PUB [room1] dave: apple umbreala
+2026-02-11 10:58:49,539 [INFO] User 'dave' session cleared from Redis.
+2026-02-11 10:58:52,451 [INFO] User 'alice' session cleared from Redis.
+2026-02-11 10:58:55,304 [INFO] User 'bob' session cleared from Redis.
+2026-02-11 10:59:11,146 [INFO] User 'alice' authenticated from ('127.0.0.1', 49842)
+2026-02-11 10:59:36,296 [INFO] User 'bob' authenticated from ('127.0.0.1', 55818)
+2026-02-11 11:05:41,985 [INFO] User 'dave' authenticated from ('127.0.0.1', 57764)
+2026-02-11 11:05:50,502 [INFO] PUB [lobby] dave: hi
+2026-02-11 11:06:01,190 [INFO] PUB [apple] Server: dave joined the room.
+2026-02-11 11:06:10,481 [INFO] PUB [lobby] alice: /subscribe dave
+2026-02-11 11:08:31,420 [INFO] User 'alice' session cleared from Redis.
+2026-02-11 11:08:33,452 [INFO] User 'bob' session cleared from Redis.
+2026-02-11 11:08:36,881 [INFO] User 'dave' session cleared from Redis.
+2026-02-11 11:08:43,299 [INFO] Shutting down server... Clearing Redis state.
+2026-02-11 11:08:43,304 [INFO] Redis database flushed successfully.
+2026-02-11 11:08:58,730 [INFO] Server listening on 127.0.0.1:60005
+2026-02-11 11:09:16,035 [INFO] User 'alice' authenticated from ('127.0.0.1', 32932)
+2026-02-11 11:11:36,583 [INFO] User 'bob' authenticated from ('127.0.0.1', 59004)
+2026-02-11 11:12:11,840 [INFO] User 'dave' authenticated from ('127.0.0.1', 43842)
+2026-02-11 11:12:18,885 [INFO] PUB [lobby] dave: hi i am dave
+2026-02-11 11:12:24,846 [INFO] PUB [lobby] bob: hi i am bob
+2026-02-11 11:12:33,314 [INFO] PUB [room1] Server: bob joined the room.
+2026-02-11 11:12:36,074 [INFO] PUB [lobby] alice: hi
+2026-02-11 11:12:42,020 [INFO] PUB [room1] Server: dave joined the room.
+2026-02-11 11:12:47,398 [INFO] PUB [room1] dave: i am dave
+2026-02-11 11:13:56,687 [INFO] alice subscribed to dave
+2026-02-11 11:14:04,879 [INFO] PUB [room1] dave: i am dave, checking subscriptoon
+2026-02-11 11:16:45,341 [INFO] PUB [room1] dave: join room2
+2026-02-11 11:16:56,802 [INFO] PUB [room2] Server: dave joined the room.
+2026-02-11 11:17:03,678 [INFO] PUB [room2] dave: hi
+2026-02-11 11:17:57,340 [INFO] User 'alice' session cleared from Redis.
+2026-02-11 11:17:59,350 [INFO] User 'bob' session cleared from Redis.
+2026-02-11 11:18:00,964 [INFO] User 'dave' session cleared from Redis.
+2026-02-11 11:18:49,831 [INFO] Shutting down server... Clearing Redis state.
+2026-02-11 11:18:49,842 [INFO] Redis database flushed successfully.
+2026-02-11 12:34:08,078 [INFO] Server listening on 127.0.0.1:60005
+2026-02-11 12:38:05,340 [INFO] Shutting down server... Clearing Redis state.
+2026-02-11 12:38:05,355 [INFO] Redis database flushed successfully.
+2026-02-11 12:38:10,262 [PORT 6001] SERVER STARTED on Port 6001. Waiting for connections...
+2026-02-11 12:38:10,265 [PORT 6001] Subscribed to global_chat via Redis.
+2026-02-11 12:38:15,990 [PORT 6002] SERVER STARTED on Port 6002. Waiting for connections...
+2026-02-11 12:38:15,994 [PORT 6002] Subscribed to global_chat via Redis.
+2026-02-11 12:38:42,499 [PORT 6001] User 'alice' logged into this instance.
+2026-02-11 12:39:16,645 [PORT 6002] User 'bob' logged into this instance.
+2026-02-11 12:41:03,392 [PORT 6001] Server shutting down. Cleaning up Redis...
+2026-02-11 12:41:06,663 [PORT 6002] User 'bob' session cleared.
+2026-02-11 12:41:07,934 [PORT 6002] Server shutting down. Cleaning up Redis...
+2026-02-11 12:41:47,308 [PORT 30001] SERVER STARTED on Port 30001. Waiting for connections...
+2026-02-11 12:42:27,207 [PORT 30001] User 'bob' logged into this instance.
+2026-02-11 12:43:05,922 [PORT 30001] User 'alice' logged into this instance.
+2026-02-11 12:43:26,421 [PORT 30002] SERVER STARTED on Port 30002. Waiting for connections...
+2026-02-11 12:47:08,785 [PORT 30002] User 'dave' logged into this instance.
+2026-02-11 12:47:54,960 [PORT 30001] User 'alice' session cleared.
+2026-02-11 12:47:56,692 [PORT 30002] Server shutting down. Cleaning up Redis...
+2026-02-11 12:48:02,490 [PORT 30001] User 'bob' session cleared.
+2026-02-11 12:56:19,379 [PORT 30001] Server shutting down. Cleaning up Redis...
+2026-02-11 12:56:28,597 [PORT 2001] SERVER STARTED on Port 2001. Waiting for connections...
+2026-02-11 12:56:50,790 [PORT 2001] User 'alice' logged into this instance.
+2026-02-11 12:57:31,535 [PORT 2001] User 'bob' logged into this instance.
+2026-02-11 13:01:13,643 [PORT 2001] User 'bob' session cleared.
+2026-02-11 13:01:14,717 [PORT 2001] User 'alice' session cleared.
+2026-02-11 13:01:35,672 [PORT 2001] Server shutting down. Cleaning up Redis...
