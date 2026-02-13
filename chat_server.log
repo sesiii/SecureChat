@@ -158,3 +158,11 @@
 2026-02-11 13:01:13,643 [PORT 2001] User 'bob' session cleared.
 2026-02-11 13:01:14,717 [PORT 2001] User 'alice' session cleared.
 2026-02-11 13:01:35,672 [PORT 2001] Server shutting down. Cleaning up Redis...
+2026-02-11 13:57:15,253 [PORT 2001] SERVER STARTED on Port 2001. Waiting for connections...
+2026-02-11 13:57:26,061 [PORT 2001] User 'alice' logged into this instance.
+2026-02-11 13:58:20,055 [PORT 2001] User 'bob' logged into this instance.
+2026-02-11 13:59:46,432 [PORT 2001] User 'bob' session cleared.
+2026-02-11 13:59:54,110 [PORT 2001] User 'bob' logged into this instance.
+2026-02-12 05:52:01,315 [PORT 2001] User 'alice' session cleared.
+2026-02-12 05:52:03,434 [PORT 2001] User 'bob' session cleared.
+2026-02-12 05:52:05,381 [PORT 2001] Server shutting down. Cleaning up Redis...
