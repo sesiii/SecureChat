@@ -26,7 +26,6 @@ user_db = {
     "eve": bcrypt.hashpw("qwerty".encode(), bcrypt.gensalt())
 }
 
-# --- Redis Logic ---
 
 def redis_listener():
     """Background thread running on ALL servers."""
