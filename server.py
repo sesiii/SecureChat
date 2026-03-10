@@ -15,10 +15,11 @@ HOST = '0.0.0.0'
 DEFAULT_PORT = 1222
 # REDIS_HOST is pulled from environment for Docker [cite: 38, 46]
 REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
-REDIS_PORT = 6379
+r = redis.Redis(host=REDIS_HOST, port=6379, decode_responses=True)
+# REDIS_PORT = 6379
 
 # Initialize Redis with decode_responses=True for easier string handling [cite: 37]
-r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
+# r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 # Logging setup to track server events [cite: 11]
 logging.basicConfig(

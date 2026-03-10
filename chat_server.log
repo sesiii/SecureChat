@@ -182,3 +182,4 @@
 2026-03-10 15:14:27,767 [INFO] Redis Pub/Sub listener started.
 2026-03-10 15:14:27,770 [INFO] SECURE SERVER on Port 1223
 2026-03-10 15:15:22,818 [INFO] User 'dave' authenticated.
+2026-03-10 16:05:03,795 [INFO] Shutting down... Cleaning Redis.

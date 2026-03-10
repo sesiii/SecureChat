@@ -3,3 +3,7 @@ venv/
 *.crt
 chat_server.log
 venv/
+venv/
+*.log
+*.key
+*.crt
