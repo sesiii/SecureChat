@@ -166,3 +166,19 @@
 2026-02-12 05:52:01,315 [PORT 2001] User 'alice' session cleared.
 2026-02-12 05:52:03,434 [PORT 2001] User 'bob' session cleared.
 2026-02-12 05:52:05,381 [PORT 2001] Server shutting down. Cleaning up Redis...
+2026-03-10 14:33:32,972 [PORT 1222] SERVER STARTED on Port 1222. Waiting for connections...
+2026-03-10 14:36:03,267 [PORT 1223] SERVER STARTED on Port 1223. Waiting for connections...
+2026-03-10 14:58:05,089 [PORT 1223] Server shutting down. Cleaning up Redis...
+2026-03-10 14:58:09,253 [PORT 1222] Server shutting down. Cleaning up Redis...
+2026-03-10 14:58:14,762 [INFO] Redis Pub/Sub listener started.
+2026-03-10 14:58:14,763 [INFO] SECURE SERVER on Port 1222
+2026-03-10 14:58:39,291 [INFO] User 'alice' authenticated.
+2026-03-10 14:58:58,522 [INFO] Redis Pub/Sub listener started.
+2026-03-10 15:01:40,586 [INFO] Shutting down... Cleaning Redis.
+2026-03-10 15:01:48,172 [INFO] Redis Pub/Sub listener started.
+2026-03-10 15:01:48,174 [INFO] SECURE SERVER on Port 1222
+2026-03-10 15:02:00,392 [INFO] User 'alice' authenticated.
+2026-03-10 15:02:36,916 [INFO] User 'bob' authenticated.
+2026-03-10 15:14:27,767 [INFO] Redis Pub/Sub listener started.
+2026-03-10 15:14:27,770 [INFO] SECURE SERVER on Port 1223
+2026-03-10 15:15:22,818 [INFO] User 'dave' authenticated.
