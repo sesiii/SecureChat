@@ -1,14 +1,8 @@
-version: '3.8'
-
 services:
-  # Mandatory Redis instance for message brokering and pub/sub 
   redis:
-    image: "redis:alpine"
+    image: redis:alpine
     container_name: redis_broker
-    ports:
-      - "6379:6379"
 
-  # First Server Instance 
   server1:
     build: .
     container_name: chat_server_1
@@ -20,7 +14,6 @@ services:
     environment:
       - REDIS_HOST=redis
 
-  # Second Server Instance (Distributed Testing) 
   server2:
     build: .
     container_name: chat_server_2
